@@ -1,14 +1,16 @@
 <template>
-    <div>
-        <v-btn fab dark large color="cyan" absolute right>
-            <v-icon dark>edit</v-icon>
-        </v-btn>
-        <h1>Review</h1>
+    <div>         
+        <h1>Review {{ id }}</h1>
     </div>
 </template>
 
 <script>
 export default {
+    data() {
+        return {
+            id: this.$route.params.id
+        }
+    }
 
 }
 </script>

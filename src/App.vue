@@ -1,60 +1,26 @@
 <template>
-  <v-app>  
+  <v-app>
+    <div class="background"></div>   
     <v-toolbar app color="indigo" dark>
       <v-toolbar-title id="title"  class="headline">
         <router-link to="/" tag="span" style="cursor: pointer">
           Csecsebecse Könyves Blog
         </router-link>
       </v-toolbar-title>
-
-      <v-btn
-      v-if="isAuthenticated"
-        to="/add"
-        color="pink darken-2"
-        dark
-        large
-        absolute
-        bottom
-        right
-        fab
-        class="animated"
-        @mouseover="mouseOver = true"
-        @mouseout="mouseOver = false"
-        :class="{tada: mouseOver}"
-        >
-        <v-icon>add</v-icon>        
-      </v-btn>
-
-      <v-btn
-        v-if="!isAuthenticated"
-        to="about"
-        color="green darken-3"
-        dark
-        large
-        absolute
-        bottom
-        right
-        fab
-        class="animated"
-        @mouseover="mouseOver = true"
-        @mouseout="mouseOver = false"
-        :class="{tada: mouseOver}"
-        >
-        <v-icon>account_circle</v-icon>        
-      </v-btn>     
-
+      <navbuttons/>
     </v-toolbar>
-      <v-content>
-        <v-container fluid>    
-          <router-view></router-view>
-        </v-container>
-      </v-content>
+    <v-content>
+      <v-container fluid>    
+        <router-view></router-view>
+      </v-container>
+    </v-content>
       <v-footer app></v-footer>
   </v-app>
 </template>
 
 
 <script>
+import Navbuttons from './components/Shared/Navbuttons'
 export default {
   data () {
     return {
@@ -63,7 +29,7 @@ export default {
     }
   },
   components: {
-   
+   Navbuttons
   },
   name: 'App'
 }
@@ -73,8 +39,17 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Gaegu');
 #title {
 font-family: 'Gaegu', cursive !important;
-/* font-size: 2em; */
-
 }
+.background {
+    position: fixed;
+    height: 100%;
+    width: 100%;          
+    background: url(./assets/bg.jpg);
+    background-size: cover;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+}
+
 </style>
 
