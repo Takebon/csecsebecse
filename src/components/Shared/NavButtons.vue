@@ -56,7 +56,7 @@
         color="red">
         <v-icon>delete</v-icon>
       </v-btn>
-      <span>Kuka</span>
+      <span>Kukába vele</span>
       </v-tooltip>
 
       <v-tooltip left>
@@ -73,24 +73,6 @@
       </v-tooltip>
 
     </v-speed-dial>
-        
-        <!-- <v-btn
-      v-if="isAuthenticated"
-        to="/add"
-        color="pink darken-2"
-        dark
-        large
-        absolute
-        bottom
-        right
-        fab
-        class="animated"
-        @mouseover="mouseOver = true"
-        @mouseout="mouseOver = false"
-        :class="{tada: mouseOver}"
-        >
-        <v-icon>add</v-icon>        
-      </v-btn> -->
 
       <v-btn
         v-if="!isAuthenticated"

@@ -6,7 +6,7 @@
         <router-link to="/" tag="span" style="cursor: pointer">
           Csecsebecse Könyves Blog
         </router-link>
-      </v-toolbar-title>
+      </v-toolbar-title>      
       <navbuttons/>
     </v-toolbar>
     <v-content>
@@ -14,7 +14,7 @@
         <router-view></router-view>
       </v-container>
     </v-content>
-      <v-footer app></v-footer>
+      <v-footer app color="indigo" dark></v-footer>
   </v-app>
 </template>
 
@@ -45,9 +45,8 @@ font-family: 'Gaegu', cursive !important;
     height: 100%;
     width: 100%;          
     background: url(./assets/bg.jpg);
-    background-size: cover;
-    top: 0;
-    left: 0;
+    background-position: center;
+    background-size: cover;   
     opacity: 0.5;
 }
 
