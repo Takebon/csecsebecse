@@ -1,18 +1,8 @@
 <template>
   <v-layout>
     <v-container class="showcase">
-      <div class="grid_item"></div>
-      <div class="grid_item"></div>
-      <div class="grid_item"></div>
-      <div class="grid_item"></div>
-      <div class="grid_item"></div>
-      <div class="grid_item"></div>
-      <div class="grid_item"></div>
-      <div class="grid_item"></div>
-      <div class="grid_item"></div>
-      <div class="grid_item"></div>
-      <div class="grid_item"></div>
-      <div class="grid_item"></div>
+      <div class="grid_item" v-for="(review, index) in reviews" :key="index">{{ review.title }}</div>
+     
     </v-container>
   </v-layout>
 </template>
@@ -28,7 +18,12 @@ export default {
     goReview() {      
       this.$router.push('/review/1236363')
     }
-  }  
+  },
+  computed: {
+    reviews() {
+      return this.$store.getters.featuredReviews
+    }
+  }
 }
 
 </script>
