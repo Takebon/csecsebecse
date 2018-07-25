@@ -1,6 +1,7 @@
 <template>
   <v-app>
-    <div class="background"></div>   
+    <div class="background"></div>
+
     <v-toolbar app color="indigo" dark>
       <v-toolbar-title id="title"  class="headline">
         <router-link to="/" tag="span" style="cursor: pointer">
@@ -9,12 +10,14 @@
       </v-toolbar-title>      
       <navbuttons/>
     </v-toolbar>
+
     <v-content>
       <v-container fluid>    
         <router-view></router-view>
       </v-container>
     </v-content>
-      <v-footer app color="indigo" dark></v-footer>
+
+    <v-footer app color="indigo" dark></v-footer>
   </v-app>
 </template>
 
@@ -22,6 +25,7 @@
 <script>
 import Navbuttons from './components/Shared/Navbuttons'
 export default {
+  name: 'App',
   data () {
     return {
       mouseOver: false,
@@ -30,25 +34,27 @@ export default {
   },
   components: {
    Navbuttons
-  },
-  name: 'App'
+  }
 }
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Gaegu');
-#title {
-font-family: 'Gaegu', cursive !important;
-}
-.background {
-    position: fixed;
-    height: 100%;
-    width: 100%;          
-    background: url(./assets/bg.jpg);
-    background-position: center;
-    background-size: cover;   
-    opacity: 0.5;
-}
+
+  @import url('https://fonts.googleapis.com/css?family=Gaegu');
+
+  #title {
+  font-family: 'Gaegu', cursive !important;
+  }
+
+  .background {
+      position: fixed;
+      height: 100%;
+      width: 100%;          
+      background: url(./assets/bg.jpg);
+      background-position: center;
+      background-size: cover;   
+      opacity: 0.5;
+  }
 
 </style>
 
