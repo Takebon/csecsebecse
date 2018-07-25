@@ -6,7 +6,8 @@
                 <div class="grid_title" ref="grid_title">{{ review.title }}</div>
                 <div class="grid_author" ref="grid_author">{{ review.author }}</div>
             </div>            
-            <div class="grid_img" ref="grid_img"><img :src="review.image" alt=""></div>           
+            <div class="grid_img" ref="grid_img"><img :src="review.image" alt=""></div>
+                      
         </div>
     </div>
 
@@ -18,6 +19,9 @@ export default {
 
 }
 </script>
+
+
+
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Pangolin');
@@ -36,6 +40,9 @@ export default {
     background: rgba(245, 164, 164, 0.4);
     filter: grayscale(0);
     box-shadow: 2px 2px 15px;
+}
+.grid_item:hover .grid_img img {
+    box-shadow: 5px 5px 10px;
 }
 .grid_item:nth-child(even) {
     background: rgba(144, 238, 144, .2);
@@ -75,7 +82,9 @@ export default {
     margin-bottom: 5px;
 }
 .grid_img img{
-    max-height: 150px;    
+    max-height: 150px;  
+    border: 1px solid black;  
+    transition: box-shadow .3s;
 }
 
 </style>
