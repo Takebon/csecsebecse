@@ -27,8 +27,8 @@ export default {
     },
     methods: {
         showItem() {
-            console.log(this.bounds)
-        },
+            this.$router.push(`/review/${ this.review.id }`)
+        },       
         initMove(e) {
             if(this.runing) {
                 return

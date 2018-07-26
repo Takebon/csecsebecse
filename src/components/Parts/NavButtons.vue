@@ -3,7 +3,7 @@
     <v-speed-dial
       v-if="isAuthenticated"
       v-model="fab"
-      absolute   
+      absolute
       right
       direction="bottom"
       open-on-hover
@@ -13,7 +13,7 @@
         slot="activator"
         v-model="fab"
         color="pink darken-2"
-        dark
+        dark      
         fab
         large
         >
@@ -21,7 +21,7 @@
         <v-icon>close</v-icon>
       </v-btn>
       
-      <v-tooltip left>
+      <!-- <v-tooltip left>
       <v-btn
         to="/edit/1234"
         slot="activator"
@@ -32,7 +32,7 @@
         <v-icon>edit</v-icon>
       </v-btn>
       <span>Szerkesztés</span>
-      </v-tooltip>
+      </v-tooltip> -->
       
       <v-tooltip left>
       <v-btn
@@ -47,7 +47,7 @@
       <span>Új ajánló</span>
       </v-tooltip>
 
-      <v-tooltip left>
+      <!-- <v-tooltip left>
       <v-btn
         slot="activator"
         fab
@@ -57,7 +57,7 @@
         <v-icon>delete</v-icon>
       </v-btn>
       <span>Kukába vele</span>
-      </v-tooltip>
+      </v-tooltip> -->
 
       <v-tooltip left>
       <v-btn
@@ -76,12 +76,12 @@
 
       <v-btn
         v-if="!isAuthenticated"
-        to="about"
+        to="/about"
         color="green darken-3"
         dark
         large
         absolute
-        bottom
+        top
         right
         fab
         class="animated"

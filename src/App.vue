@@ -8,7 +8,7 @@
           Csecsebecse Könyves Blog
         </router-link>
       </v-toolbar-title>      
-      <navbuttons/>
+      
     </v-toolbar>
 
     <v-content>
@@ -23,7 +23,7 @@
 
 
 <script>
-import Navbuttons from './components/Shared/Navbuttons'
+
 export default {
   name: 'App',
   data () {
@@ -32,9 +32,7 @@ export default {
       isAuthenticated: true
     }
   },
-  components: {
-   Navbuttons
-  }
+  
 }
 </script>
 

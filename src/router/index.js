@@ -33,6 +33,7 @@ export default new Router({
     {
       path: '/review/:id',
       name: 'ShowReview',
+      props: true,
       component: ShowReview
     }
     

@@ -1,5 +1,6 @@
 <template>
   <v-layout>
+    <navbuttons/>
     <v-container class="showcase">
       <grid-element v-for="(review, index) in reviews" 
                     :key="index"
@@ -9,6 +10,7 @@
 </template>
 
 <script>
+import Navbuttons from '../components/Parts/Navbuttons'
 import gridElement from './Parts/GridElement'
 export default {
   data() {
@@ -17,9 +19,7 @@ export default {
     }
   },
   methods: {
-    goReview() {      
-      this.$router.push('/review/1236363')
-    }
+    
   },
   computed: {
     reviews() {
@@ -27,7 +27,8 @@ export default {
     }
   },
   components: {
-    gridElement
+    gridElement,
+    Navbuttons
   }
 }
 
