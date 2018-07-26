@@ -99,7 +99,7 @@ export default {
 data () {
     return {
       mouseOver: false,
-      isAuthenticated: true,
+      isAuthenticated: false,
       fab: false
     }
   },
