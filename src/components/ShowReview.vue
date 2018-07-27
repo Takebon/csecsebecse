@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="showReviewSide">
+        <div class="showReviewSide" ref="showReviewSide">
             <div class="reviewBg">
                 <div class="showReviewContainer">       
                     <div class="showReviewImage">
@@ -17,7 +17,7 @@
             </div>
         </div>     
         <v-btn
-            to= "/"
+            @click="goBack"
             color="pink"
             dark
             large            
@@ -47,6 +47,35 @@ export default {
         review() {           
             return this.$store.getters.loadedReview(this.id)
         }
+    },
+    methods: {
+        goBack() {
+            TweenMax.to(this.$refs.showReviewSide, .5, {
+                ease: Power1.easeOut,
+                x: 1000,
+                y: 0,
+                z: 0,
+                rotationX: 0,
+                rotationY: 0,
+                rotationZ: 180,
+                autoAlpha: 0
+            })            
+            setTimeout(() => {
+                this.$router.push('/')
+            }, 400)
+        }
+    },
+    mounted() {      
+        TweenMax.from(this.$refs.showReviewSide, 1, {
+            ease: Power1.easeOut,
+            x: 1500,
+            y: 0,
+            z: 0,
+            rotationX: 0,
+            rotationY: 0,
+            rotationZ: 45,
+            autoAlpha: 0
+        })
     }
 }
 </script>
@@ -98,7 +127,7 @@ export default {
 }
 .showReviewText {
     grid-area: text;
-    padding: 10px;
+    padding: 15px;
     
 }
 

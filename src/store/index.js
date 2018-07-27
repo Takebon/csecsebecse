@@ -18,7 +18,8 @@ export const store = new Vuex.Store({
             {date: 20180710 ,title: 'THEN', image: "https://source.unsplash.com/random/200x209", author: 'John Doe', id: 10, review: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi maxime aliquid, corporis pariatur impedit sapiente dolorum nulla dolor veniam inventore!'},
             {date: 20180711 ,title: 'ELEVEN', image: "https://source.unsplash.com/random/200x210", author: 'John Doe', id: 11, review: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi maxime aliquid, corporis pariatur impedit sapiente dolorum nulla dolor veniam inventore!'},
             {date: 20180712 ,title: 'TWELVE', image: "https://source.unsplash.com/random/200x211", author: 'John Doe', id: 12, review: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi maxime aliquid, corporis pariatur impedit sapiente dolorum nulla dolor veniam inventore!'}
-        ]     },
+        ]        
+        },
      getters: {
         loadedReviews(state) {
             return state.loadedReviews.sort((reviewA, reviewB) => {
@@ -37,9 +38,10 @@ export const store = new Vuex.Store({
         }
     },
     mutations: {
+        
 
     },
     actions: {
-
+        
     }
 })
