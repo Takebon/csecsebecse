@@ -8,12 +8,13 @@
           Csecsebecse Könyves Blog
         </router-link>
       </v-toolbar-title>      
-      
     </v-toolbar>
 
     <v-content>
-      <v-container fluid>    
-        <router-view></router-view>
+      <v-container fluid>
+        
+        <router-view></router-view>        
+        
       </v-container>
     </v-content>
 
@@ -28,8 +29,9 @@ export default {
   name: 'App',
   data () {
     return {
+      isAuthenticated: true,
       mouseOver: false,
-      isAuthenticated: true
+      animSchema: "rightToLeft"
     }
   },
   
@@ -51,8 +53,38 @@ export default {
       background: url(./assets/bg.jpg);
       background-position: center;
       background-size: cover;   
-      opacity: 0.5;
+      opacity: 0.3;
   }
 
+  /* .rightToLeft-enter {
+    opacity: 0;
+  }
+  .rightToLeft-enter-active {
+    animation: slide-in 1s ease-out forwards;
+    transition: opacity .5s; 
+  }
+  .rightToLeft-leave-active {
+    animation: slide-out 1s ease-out forwards;
+    transition: opacity .8s;
+    opacity: 0;
+  }
+  @keyframes slide-in {
+  from {
+    transform: translateX(200px);
+    
+  }
+  to {
+    transform: translateX(0);
+   
+  }
+}
+@keyframes slide-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(200px)
+  }
+} */
 </style>
 

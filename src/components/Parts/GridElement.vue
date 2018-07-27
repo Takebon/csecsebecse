@@ -27,6 +27,7 @@ export default {
     },
     methods: {
         showItem() {
+            this.runing = false
             this.$router.push(`/review/${ this.review.id }`)
         },       
         initMove(e) {
@@ -41,12 +42,11 @@ export default {
         move(e) {
             if (!this.runing) {
                 return
-            } else {
-                requestAnimationFrame(() => {
+            } else {                
                 let mousePos = this.$helpers.move(e, this.bounds, this.runing)       
                 for (let key in this.animatable) {
                 let element = this.$helpers.getAnimProps(key, mousePos.x, mousePos.y, this.bounds)
-          
+                if(this.animatable[key] === 'null') {return}
                 TweenMax.to(this.animatable[key], 1.5, {
                     ease: Power1.easeOut,
                     x: element.x,
@@ -56,7 +56,7 @@ export default {
                     rotationY: element.rY,
                     rotationZ: element.rZ
                     })
-                }})
+                }
             }
         },
         stopMove() {
