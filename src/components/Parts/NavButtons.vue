@@ -19,20 +19,7 @@
         >
         <v-icon>account_circle</v-icon>
         <v-icon>close</v-icon>
-      </v-btn>
-      
-      <!-- <v-tooltip left>
-      <v-btn
-        to="/edit/1234"
-        slot="activator"
-        fab
-        dark
-        small
-        color="green">
-        <v-icon>edit</v-icon>
-      </v-btn>
-      <span>Szerkesztés</span>
-      </v-tooltip> -->
+      </v-btn>     
       
       <v-tooltip left>
       <v-btn
@@ -46,18 +33,6 @@
       </v-btn>
       <span>Új ajánló</span>
       </v-tooltip>
-
-      <!-- <v-tooltip left>
-      <v-btn
-        slot="activator"
-        fab
-        dark
-        small
-        color="red">
-        <v-icon>delete</v-icon>
-      </v-btn>
-      <span>Kukába vele</span>
-      </v-tooltip> -->
 
       <v-tooltip left>
       <v-btn
@@ -99,7 +74,7 @@ export default {
 data () {
     return {
       mouseOver: false,
-      isAuthenticated: false,
+      isAuthenticated: true,
       fab: false
     }
   },

@@ -12,9 +12,25 @@
                     </div>
                     <div class="showReviewText">
                         <p class="body-2">{{ review.review }}</p>
-                    </div>
-                </div>
-            </div>
+                        <v-btn
+                        v-if="isAuthenticated"
+                        color="green"
+                        dark
+                        small                                
+                        fab>                
+                        <v-icon>edit</v-icon>
+                        </v-btn>                      
+                        <v-btn
+                        v-if="isAuthenticated"
+                        color="red"
+                        dark
+                        small                                
+                        fab>                
+                        <v-icon>delete</v-icon>
+                        </v-btn>                      
+                    </div>                   
+                </div>                
+            </div>            
         </div>     
         <v-btn
             @click="goBack"
@@ -40,7 +56,8 @@ export default {
     props: ['id'],
     data() {
         return {
-            mouseOver: false
+            mouseOver: false,
+            isAuthenticated: true,
         }
     },
     computed: {
@@ -74,7 +91,8 @@ export default {
             rotationX: 0,
             rotationY: 0,
             rotationZ: 45,
-            autoAlpha: 0
+            autoAlpha: 0,
+            immediateRender: false
         })
     }
 }

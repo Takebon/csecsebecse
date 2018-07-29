@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app id="app">
     <div class="background"></div>
 
     <v-toolbar app color="indigo" dark>
@@ -38,6 +38,15 @@ export default {
 
   @import url('https://fonts.googleapis.com/css?family=Gaegu');
 
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+  }
+  #app {
+    background-color: rgb(100, 100, 100);
+  }
+
   #title {
   font-family: 'Gaegu', cursive !important;
   }
@@ -46,10 +55,10 @@ export default {
       position: fixed;
       height: 100%;
       width: 100%;          
-      background: url(./assets/bg.jpg);
+      background: url(./assets/bg.jpg) no-repeat;
       background-position: center;
       background-size: cover;   
-      opacity: 0.3;
+      opacity: 0.8;
   } 
 
 </style>

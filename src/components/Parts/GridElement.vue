@@ -2,7 +2,8 @@
     <div class="grid_item" @click="showItem"
                            @mouseenter="initMove"
                            @mousemove="move"
-                           @mouseout="stopMove">        
+                           @mouseout="stopMove"
+                           ref="grid_item">        
         <div class="grid_frame" ><img src="../../assets/frame1.png" alt="" ref="grid_frame"></div>
         <div class="grid_container">
             <div class="grid_text">
@@ -27,8 +28,8 @@ export default {
     },
     methods: {
         showItem() {
-            this.runing = false            
-            this.$router.push(`/review/${ this.review.id }`)
+            this.runing = false
+            this.$emit('showSingleComponent', this.review.id)            
         },       
         initMove(e) {
             if(this.runing) {
@@ -96,7 +97,7 @@ export default {
 .grid_item {
     width: 300px;
     height: 350px;  
-    background: rgba(214, 20, 20, 0.2);
+    background: rgba(153, 235, 255, 0.3);
     border-radius: 20px;
     transition: background .5s,
                 filer .5s,
@@ -105,7 +106,7 @@ export default {
     filter: grayscale(1);
 }
 .grid_item:hover{
-    background: rgba(214, 20, 20, 0.4);
+    background: rgba(153, 235, 255, 0.6);
     filter: grayscale(0);
     box-shadow: 2px 2px 15px;
 }
@@ -113,10 +114,10 @@ export default {
     box-shadow: 5px 5px 10px;
 }
 .grid_item:nth-child(even) {
-    background: rgba(65, 255, 65, 0.2);
+    background: rgba(65, 255, 65, 0.3);
 }
 .grid_item:nth-child(even):hover {
-    background: rgba(65, 255, 65, 0.4)
+    background: rgba(65, 255, 65, 0.6)
 }
 .grid_bg img {
     position: absolute;
@@ -155,5 +156,4 @@ export default {
     border: 1px solid black;  
     transition: box-shadow .3s;
 }
-
 </style>

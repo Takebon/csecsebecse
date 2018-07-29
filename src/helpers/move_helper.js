@@ -33,6 +33,8 @@ export default {
                             rotation:  {x:[0, 0], y:[0, 0], z:[-2, 2]}},
               grid_img: {transform: {x:[-20, 20], y:[-10, 10], z:[0, 0]},
                             rotation:  {x:[0, 0], y:[0, 0], z:[2, -2]}},
+              grid_item: {transform: {x:[0, 0], y:[0, 0], z:[0, 0]},
+                            rotation:  {x:[0, 0], y:[0, 0], z:[2, -2]}},
           }
           for (let key in options) {
             if (key === element) {            
@@ -45,7 +47,10 @@ export default {
               return {x: pos_x, y: pos_y, z: pos_z, rX: rot_X, rY: rot_Y, rZ: rot_Z}
             }
           }
-        },                 
+        },
+        getRandomInteger(min, max) {
+          return (Math.random() * (max - min) + min).toFixed(0)
+        }                
       }
     }
   }
