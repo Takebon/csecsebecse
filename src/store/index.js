@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import 'firebase/firestore'
 
 Vue.use(Vuex)
 
@@ -78,6 +79,9 @@ export const store = new Vuex.Store({
                     }
                 )
                 .catch(err => console.log(err))
+        },
+        signOut({commit}) {
+            firebase.auth().signOut().then(commit('setUser', null))
         }
     }
 })

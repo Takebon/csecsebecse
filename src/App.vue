@@ -2,7 +2,7 @@
   <v-app id="app">
     <div class="background"></div>
 
-    <v-toolbar app color="orange darken-3" dark @click.ctrl="goToAdmin">
+    <v-toolbar app color="orange darken-4" dark @click.ctrl="goToAdmin">
       <v-toolbar-title   class="headline">
         <router-link to="/" tag="span" style="cursor: pointer" class="headbarText">
           Csecsebecse Könyves Blog
@@ -34,7 +34,7 @@
       </v-container>
     </v-content>
 
-    <v-footer app color="indigo" dark></v-footer>
+    <v-footer app color="orange darken-4" dark></v-footer>
   </v-app>
 </template>
 

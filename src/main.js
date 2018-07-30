@@ -1,13 +1,16 @@
 
 import Vue from 'vue'
 import App from './App'
-import * as firebase from 'firebase'
+import firebase from 'firebase/app'
 import router from './router'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import { store } from './store/index'
 import moveHelper from './helpers/move_helper'
 import {TweenMax} from 'gsap/TweenMax'
+
+import 'firebase/auth'
+import 'firebase/firestore'
 
 Vue.use(moveHelper)
 
