@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 
 Vue.use(Vuex)
 
@@ -18,7 +20,8 @@ export const store = new Vuex.Store({
             {date: 20180710 ,title: 'THEN', image: "https://source.unsplash.com/random/200x209", author: 'John Doe', id: 10, review: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi maxime aliquid, corporis pariatur impedit sapiente dolorum nulla dolor veniam inventore!'},
             {date: 20180711 ,title: 'ELEVEN', image: "https://source.unsplash.com/random/200x210", author: 'John Doe', id: 11, review: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi maxime aliquid, corporis pariatur impedit sapiente dolorum nulla dolor veniam inventore!'},
             {date: 20180712 ,title: 'TWELVE', image: "https://source.unsplash.com/random/200x211", author: 'John Doe', id: 12, review: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi maxime aliquid, corporis pariatur impedit sapiente dolorum nulla dolor veniam inventore!'}
-        ]        
+        ],
+        user: null
         },
      getters: {
         loadedReviews(state) {
@@ -27,7 +30,7 @@ export const store = new Vuex.Store({
             }) 
         },
         featuredReviews(state, getters) {
-            return getters.loadedReviews.slice(0, 10)
+            return getters.loadedReviews.slice(0, 15)
         },
         loadedReview(state) {
             return (reviewId) => {                
@@ -35,13 +38,46 @@ export const store = new Vuex.Store({
                     return review.id == reviewId
                 })
             }
+        },
+        user(state) {
+            return state.user
         }
     },
     mutations: {
-        
+        createReview(state, payload) {            
+            state.loadedReviews.push(payload)
+        },
+        setUser(state, payload) {
+            
+            state.user = payload
+        }
 
     },
     actions: {
-        
+        createReview({commit}, payload) {
+            const review = {
+                title: payload.title,
+                author: payload.author,
+                review: payload.review,
+                image: payload.image,
+                date: payload.date,
+                id: 'jhspoiu65498454'
+            }
+            //firebase coming here
+            commit('createReview', review)
+        },
+        signIn({commit}, payload) {
+            firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
+                .then(
+                    cred => {
+                        const user = {
+                            id: cred.user.uid,
+                            email: cred.user.email
+                        }
+                        commit('setUser', user)
+                    }
+                )
+                .catch(err => console.log(err))
+        }
     }
 })

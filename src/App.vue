@@ -2,13 +2,31 @@
   <v-app id="app">
     <div class="background"></div>
 
-    <v-toolbar app color="indigo" dark>
-      <v-toolbar-title id="title"  class="headline">
-        <router-link to="/" tag="span" style="cursor: pointer">
+    <v-toolbar app color="orange darken-3" dark @click.ctrl="goToAdmin">
+      <v-toolbar-title   class="headline">
+        <router-link to="/" tag="span" style="cursor: pointer" class="headbarText">
           Csecsebecse Könyves Blog
         </router-link>
-      </v-toolbar-title>      
+      </v-toolbar-title>     
+             
     </v-toolbar>
+
+    <v-btn
+        v-if="isAuthenticated"    
+        to="/add"
+        color="pink darken-3"
+        dark        
+        fixed
+        bottom
+        right
+        fab
+        class="animated"
+        @mouseover="mouseOver = true"
+        @mouseout="mouseOver = false"
+        :class="{tada: mouseOver}"
+        >
+        <v-icon>add</v-icon>        
+      </v-btn>
 
     <v-content>
       <v-container fluid>        
@@ -26,18 +44,27 @@
 export default {
   name: 'App',
   data () {
-    return {
-      isAuthenticated: true,
+    return {      
       mouseOver: false         
     }
-  } 
+  },
+  methods: {
+    goToAdmin() {
+      this.$router.push('/admin')
+    }
+  },
+  computed: {
+    isAuthenticated() {
+      return this.$store.getters.user !== null && this.$store.getters.user !== undefined
+    },
+    user() {
+      return this.$store.getters.user
+    }
+  }
 }
 </script>
 
 <style>
-
-  @import url('https://fonts.googleapis.com/css?family=Gaegu');
-
   *,
   *::after,
   *::before {
@@ -47,7 +74,7 @@ export default {
     background-color: rgb(100, 100, 100);
   }
 
-  #title {
+  .headbarText {
   font-family: 'Gaegu', cursive !important;
   }
 

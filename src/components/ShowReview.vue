@@ -12,22 +12,30 @@
                     </div>
                     <div class="showReviewText">
                         <p class="body-2">{{ review.review }}</p>
-                        <v-btn
-                        v-if="isAuthenticated"
-                        color="green"
-                        dark
-                        small                                
-                        fab>                
-                        <v-icon>edit</v-icon>
-                        </v-btn>                      
-                        <v-btn
-                        v-if="isAuthenticated"
-                        color="red"
-                        dark
-                        small                                
-                        fab>                
-                        <v-icon>delete</v-icon>
-                        </v-btn>                      
+                        <v-tooltip bottom>
+                            <v-btn
+                            v-if="isAuthenticated"
+                            slot="activator"
+                            color="green"
+                            dark
+                            small                                
+                            fab>                
+                            <v-icon>edit</v-icon>
+                            </v-btn>
+                            <span>Szerkeszt</span>
+                        </v-tooltip>
+                        <v-tooltip bottom>                    
+                            <v-btn
+                            v-if="isAuthenticated"
+                            slot="activator"
+                            color="red"
+                            dark
+                            small                                
+                            fab>                
+                            <v-icon>delete</v-icon>
+                            </v-btn>
+                            <span>Kukába</span>
+                        </v-tooltip>                 
                     </div>                   
                 </div>                
             </div>            
@@ -35,8 +43,7 @@
         <v-btn
             @click="goBack"
             color="pink"
-            dark
-            large            
+            dark                       
             fixed
             top
             right
@@ -56,15 +63,17 @@ export default {
     props: ['id'],
     data() {
         return {
-            mouseOver: false,
-            isAuthenticated: true,
+            mouseOver: false,            
         }
     },
     computed: {
         review() {           
             return this.$store.getters.loadedReview(this.id)
+        },
+        isAuthenticated() {
+        return this.$store.getters.user !== null && this.$store.getters.user !== undefined
         }
-    },
+    },   
     methods: {
         goBack() {
             TweenMax.to(this.$refs.showReviewSide, .5, {
@@ -82,8 +91,9 @@ export default {
             }, 400)
         }
     },
-    mounted() {      
-        TweenMax.from(this.$refs.showReviewSide, 1, {
+    mounted() {
+        if (window.innerWidth > 700)  {
+        TweenMax.from(this.$refs.showReviewSide, .5, {
             ease: Power1.easeOut,
             x: 1500,
             y: 0,
@@ -91,9 +101,14 @@ export default {
             rotationX: 0,
             rotationY: 0,
             rotationZ: 45,
-            autoAlpha: 0,
-            immediateRender: false
-        })
+            autoAlpha: 0,            
+            })
+        } else {
+            TweenMax.from(this.$refs.showReviewSide, 1, {
+            ease: Power1.easeOut,           
+            autoAlpha: 0,            
+            })
+        }
     }
 }
 </script>
@@ -146,9 +161,8 @@ export default {
 .showReviewText {
     grid-area: text;
     padding: 15px;
-    
+    white-space: pre-wrap;
 }
-
 .showReviewImage img{
    max-height: 400px;
    margin-left: 10px; 

@@ -1,6 +1,20 @@
 <template>
   <v-layout>
-    <navbuttons/>
+    <v-btn        
+        to="/about"
+        color="green darken-3"
+        dark        
+        fixed
+        top
+        right
+        fab
+        class="animated"
+        @mouseover="mouseOver = true"
+        @mouseout="mouseOver = false"
+        :class="{tada: mouseOver}"
+        >
+        <v-icon>account_circle</v-icon>        
+      </v-btn>
     <v-container class="showcase">
       <grid-element v-for="(review, index) in reviews" 
                     :key="index"
@@ -12,12 +26,11 @@
 </template>
 
 <script>
-import Navbuttons from '../components/Parts/Navbuttons'
 import gridElement from './Parts/GridElement'
 export default {
   data() {
     return {
-      
+      mouseOver: false,
     }
   },
   methods: {
@@ -25,8 +38,8 @@ export default {
       for (let key in this.$refs.grid_element) {
         for (let element in this.$refs.grid_element[key].$refs) {
           let bounds = this.$refs.grid_element[key].$refs[element].getBoundingClientRect()
-          TweenMax.to(this.$refs.grid_element[key].$refs[element], 1, {
-                  ease: Elastic.easeOut.config(.5, 0.7),
+          TweenMax.to(this.$refs.grid_element[key].$refs[element], .5, {
+                  ease: Power1.easeOut,
                   x: -1*(bounds.x + bounds.width),
                   y: (this.$helpers.getRandomInteger(0, 1000)),
                   z: 0,
@@ -48,15 +61,14 @@ export default {
     }
   },
   components: {
-    gridElement,
-    Navbuttons
+    gridElement,   
   },
   mounted() {
     for (let key in this.$refs.grid_element) {
       for (let element in this.$refs.grid_element[key].$refs) {
         let bounds = this.$refs.grid_element[key].$refs[element].getBoundingClientRect()
-         TweenMax.from(this.$refs.grid_element[key].$refs[element], 2, {
-                ease: Elastic.easeOut.config(.5, 0.7),
+         TweenMax.from(this.$refs.grid_element[key].$refs[element], .5, {
+                ease: Power1.easeOut,
                 x: -1*(bounds.x + bounds.width),
                 y: (this.$helpers.getRandomInteger(0, 1000)),
                 z: 0,

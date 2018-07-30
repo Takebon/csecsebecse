@@ -93,7 +93,6 @@ export default {
 
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Pangolin');
 .grid_item {
     width: 300px;
     height: 350px;  
@@ -155,5 +154,10 @@ export default {
     max-height: 150px;  
     border: 1px solid black;  
     transition: box-shadow .3s;
+}
+@media screen and (max-width: 600px) {
+    .grid_item {
+        filter: grayscale(0);
+    }
 }
 </style>

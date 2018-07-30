@@ -5,6 +5,7 @@ import About from '@/components/About'
 import AddReview from '@/components/Review/AddReview'
 import EditReview from '@/components/Review/EditReview'
 import ShowReview from '@/components/ShowReview'
+import Admin from '@/components/Parts/Admin'
 
 Vue.use(Router)
 
@@ -35,6 +36,11 @@ export default new Router({
       name: 'ShowReview',
       props: true,
       component: ShowReview
+    },
+    {
+      path: '/admin',
+      name: 'Admin',
+      component: Admin
     }
     
   ],
