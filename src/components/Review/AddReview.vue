@@ -2,8 +2,6 @@
     <v-container>
         <v-layout row >
             <v-flex xs12 sm6 offset-sm3 lg4 offset-lg4 id="addPageBackground" class="pa-5">
-
-
             <v-layout row >
                 <v-flex xs12>
                     <h2>Új ajánló</h2>
@@ -38,17 +36,18 @@
 
                         <v-layout row>
                             <v-flex xs12>
-                                <!-- <v-btn raised class="primary" @click="onPickFile">Upload Image</v-btn> -->
+                                <v-btn raised class="primary" @click="onPickFile">Upload Image</v-btn>
                                 <input type="file" 
                                     style="display: none" 
                                     ref="fileInput" 
                                     accept="image/*"
+                                    @change="onFilePicked"
                                     >
                             </v-flex>
                         </v-layout>
                         <v-layout row>
                             <v-flex xs12>
-                                <img :src="image" height="150">
+                                <img :src="imageURL" height="150">
                             </v-flex>
                         </v-layout>
 
@@ -84,10 +83,12 @@ export default {
             author: '',
             title: '',
             review: '',
-            image: 'https://s06.static.libri.hu/cover/22/d/4129634_5.jpg',
+            imageURL: '',
+            image: null,
             reqRules: [
                 v => !!v || 'Valamit muszáj beírni!'
-            ]
+            ],
+            alert: null
         }
     },
     computed: {
@@ -103,6 +104,9 @@ export default {
             if (!this.formIsValid) {
                 return
             }
+            if (!this.image) {
+                return
+            }
             const reviewData = {
                 author: this.author,
                 title: this.title,
@@ -112,6 +116,23 @@ export default {
             }
             this.$store.dispatch('createReview', reviewData)
             this.$router.push('/')
+        },
+        onPickFile() {
+            this.$refs.fileInput.click()
+        },
+        onFilePicked(event) {
+            const files = event.target.files
+            let filename = files[0].name
+            if(filename.lastIndexOf('.') <= 0) {
+                this.alert = 'Valami nem kerek!'
+                return
+            }
+            const fileReader = new FileReader()
+            fileReader.addEventListener('load', () => {
+                this.imageURL = fileReader.result
+            })
+            fileReader.readAsDataURL(files[0])
+            this.image = files[0]
         }
     }
 }

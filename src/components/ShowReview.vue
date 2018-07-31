@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="showReviewSide" ref="showReviewSide">
-            <div class="reviewBg">
+            <div class="reviewBg" @click="goBack">
                 <div class="showReviewContainer">       
                     <div class="showReviewImage">
                         <img :src="review.image" alt="" >

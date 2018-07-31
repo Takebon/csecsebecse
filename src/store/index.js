@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import firebase from 'firebase/app'
 import 'firebase/auth'
-import 'firebase/firestore'
+import 'firebase/storage'
+import db from '../firebase/init'
 
 Vue.use(Vuex)
 
@@ -45,7 +46,8 @@ export const store = new Vuex.Store({
         }
     },
     mutations: {
-        createReview(state, payload) {            
+        createReview(state, payload) {
+            console.log(payload)         
             state.loadedReviews.push(payload)
         },
         setUser(state, payload) {            
@@ -58,13 +60,41 @@ export const store = new Vuex.Store({
             const review = {
                 title: payload.title,
                 author: payload.author,
-                review: payload.review,
-                image: payload.image,
-                date: payload.date,
-                id: 'jhspoiu65498454'
+                review: payload.review,                
+                date: payload.date             
             }
-            //firebase coming here
-            commit('createReview', review)
+            //firestore
+            let key
+            let imageURL
+            let ext
+            db.collection('reviews').add(review)
+                .then((res) => {
+                    key = res.id
+                    return key
+                })
+                .then(key => {
+                    const filename = payload.image.name
+                    ext = filename.slice(filename.lastIndexOf('.'))
+                    return firebase.storage().ref('reviews/' + key + '.' + ext).put(payload.image)
+                })
+                .then(fileData => {
+                    return firebase.storage().ref('reviews/' + key + '.' + ext).getDownloadURL()
+                })
+                .then(URL => {
+                    imageURL = URL
+                    db.collection('reviews').doc(key).update({
+                        image: imageURL
+                    })
+                })
+                .then(() => {
+                    commit('createReview', {
+                        ...review,
+                        image: imageURL,
+                        id: key
+                    })
+                })
+                .catch(err => console.log(err))
+            
         },
         signIn({commit}, payload) {
             firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
