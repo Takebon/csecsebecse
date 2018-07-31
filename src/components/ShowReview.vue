@@ -1,9 +1,9 @@
 <template>
     <div>
         <div class="showReviewSide" ref="showReviewSide">
-            <div class="reviewBg" @click="goBack">
+            <div class="reviewBg">
                 <div class="showReviewContainer">       
-                    <div class="showReviewImage">
+                    <div class="showReviewImage"  @click="goBack">
                         <img :src="review.image" alt="" >
                     </div>
                     <div class="showReviewTitle">
@@ -26,6 +26,7 @@
                         </v-tooltip>
                         <v-tooltip bottom>                    
                             <v-btn
+                            @click="deleteReview"
                             v-if="isAuthenticated"
                             slot="activator"
                             color="red"
@@ -89,6 +90,10 @@ export default {
             setTimeout(() => {
                 this.$router.push('/')
             }, 400)
+        },
+        deleteReview() {
+            this.$store.dispatch('deleteReview', {id: this.id, imgExt: this.review.imgExt})
+            this.$router.push('/')
         }
     },
     mounted() {
@@ -165,7 +170,8 @@ export default {
 }
 .showReviewImage img{
    max-height: 400px;
-   margin-left: 10px; 
+   margin-left: 10px;
+   max-width: 200px;
    box-shadow: 4px 1px 15px black;
 }
 

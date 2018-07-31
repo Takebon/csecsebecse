@@ -154,6 +154,7 @@ export default {
     max-height: 150px;  
     border: 1px solid black;  
     transition: box-shadow .3s;
+    max-width: 200px;
 }
 @media screen and (max-width: 600px) {
     .grid_item {
