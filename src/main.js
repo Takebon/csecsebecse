@@ -8,16 +8,16 @@ import 'vuetify/dist/vuetify.min.css'
 import { store } from './store/index'
 import moveHelper from './helpers/move_helper'
 import {TweenMax} from 'gsap/TweenMax'
-
+import './firebase/init'
 import 'firebase/auth'
-import 'firebase/firestore'
+
 
 Vue.use(moveHelper)
 
 Vue.use(Vuetify)
 
 Vue.config.productionTip = false
-
+  
 new Vue({
   el: '#app',
   router,
@@ -26,12 +26,12 @@ new Vue({
   components: { App },
   template: '<App/>',
   created() {
-    firebase.initializeApp({
-      apiKey: 'AIzaSyA_wO5E0YxSeyxMfSDdQrvaGhnwjKv8m7g',
-      authDomain: 'csecsebecsekonyvesblog.firebaseapp.com',
-      databaseURL: 'https://csecsebecsekonyvesblog.firebaseio.com',
-      projectId: 'csecsebecsekonyvesblog',
-      storageBucket: 'csecsebecsekonyvesblog.appspot.com',
+    firebase.auth().onAuthStateChanged(user => {
+      if(user) {
+        this.$store.dispatch('autoSignIn', user)
+      }
     })
   }
 })
+
+

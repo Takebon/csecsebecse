@@ -55,14 +55,14 @@
                                 <v-btn
                                     @click="onSignOut"     
                                     v-if="isAuthenticated"
-                                    color="green darken-3"
+                                    color="red darken-3"
                                     dark
                                     absolute     
                                     bottom
                                     right
                                     fab                                                                     
                                     >
-                                    <v-icon>how_to_reg</v-icon>        
+                                    <v-icon>remove_circle_outline</v-icon>        
                                 </v-btn>
                         </v-container>
                     </v-card-text>

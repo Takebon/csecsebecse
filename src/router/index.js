@@ -6,10 +6,12 @@ import AddReview from '@/components/Review/AddReview'
 import EditReview from '@/components/Review/EditReview'
 import ShowReview from '@/components/ShowReview'
 import Admin from '@/components/Parts/Admin'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 
 Vue.use(Router)
 
-export default new Router({
+let router = new Router({
   routes: [
     {
       path: '/',
@@ -24,12 +26,18 @@ export default new Router({
     {
       path: '/add',
       name: 'AddReview',
-      component: AddReview
+      component: AddReview,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/edit/:id',
       name: 'EditReview',
-      component: EditReview
+      component: EditReview,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/review/:id',
@@ -46,3 +54,17 @@ export default new Router({
   ],
   mode: 'history'
 })
+
+router.beforeEach((to, from, next) => {
+  if(to.matched.some(record => record.meta.requiresAuth)) {
+    if (firebase.auth().currentUser) {
+      next()
+    } else {
+      next('/')
+    }
+  } else {
+    next()
+  }
+})
+
+export default router

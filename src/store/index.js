@@ -48,8 +48,7 @@ export const store = new Vuex.Store({
         createReview(state, payload) {            
             state.loadedReviews.push(payload)
         },
-        setUser(state, payload) {
-            
+        setUser(state, payload) {            
             state.user = payload
         }
 
@@ -82,6 +81,12 @@ export const store = new Vuex.Store({
         },
         signOut({commit}) {
             firebase.auth().signOut().then(commit('setUser', null))
+        },
+        autoSignIn({commit}, payload) {
+            commit('setUser', {
+                id: payload.uid,
+                email: payload.email
+            })
         }
     }
 })
