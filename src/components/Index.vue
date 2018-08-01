@@ -30,7 +30,7 @@ import gridElement from './Parts/GridElement'
 export default {
   data() {
     return {
-      mouseOver: false,
+      mouseOver: false
     }
   },
   methods: {

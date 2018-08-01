@@ -58,8 +58,7 @@
                                 name="review"
                                 label="Ajánló"
                                 v-model="review"
-                                id="review"
-                                
+                                id="review"                                
                                 required></v-textarea>
                             </v-flex>
                         </v-layout>
@@ -112,7 +111,7 @@ export default {
                 title: this.title,
                 review: this.review,
                 image: this.image,
-                date: new Date()
+                date: Date.now()
             }
             this.$store.dispatch('createReview', reviewData)
             this.$router.push('/')

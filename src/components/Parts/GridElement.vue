@@ -3,7 +3,8 @@
                            @mouseenter="initMove"
                            @mousemove="move"
                            @mouseout="stopMove"
-                           ref="grid_item">        
+                           ref="grid_item"
+                           :class="{offMouse: mouseState}">        
         <div class="grid_frame" ><img src="../../assets/frame1.png" alt="" ref="grid_frame"></div>
         <div class="grid_container">
             <div class="grid_text">
@@ -23,7 +24,8 @@ export default {
         return {
             animatable: {},
             bounds: '',
-            runing: false
+            runing: false,
+            mouseState: true
         }
     },
     methods: {
@@ -84,6 +86,7 @@ export default {
     },
     mounted() {
         this.animatable = this.$refs
+        setTimeout(() => {this.mouseState = false}, 500)
     }
 
 }
@@ -93,6 +96,9 @@ export default {
 
 
 <style>
+.offMouse {
+    pointer-events: none;
+}
 .grid_item {
     width: 300px;
     height: 350px;  
@@ -103,6 +109,7 @@ export default {
                 box-shadow .3s;
     position: relative; 
     filter: grayscale(1);
+    
 }
 .grid_item:hover{
     background: rgba(153, 235, 255, 0.6);

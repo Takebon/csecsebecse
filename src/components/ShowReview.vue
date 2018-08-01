@@ -13,17 +13,9 @@
                     <div class="showReviewText">
                         <p class="body-2">{{ review.review }}</p>
                         <v-tooltip bottom>
-                            <v-btn
-                            v-if="isAuthenticated"
-                            slot="activator"
-                            color="green"
-                            dark
-                            small                                
-                            fab>                
-                            <v-icon>edit</v-icon>
-                            </v-btn>
-                            <span>Szerkeszt</span>
-                        </v-tooltip>
+                            <edit-review :review="review" v-if="isAuthenticated" slot="activator"/>
+                        <span>Szerkeszt</span>
+                        </v-tooltip>                       
                         <v-tooltip bottom>                    
                             <v-btn
                             @click="deleteReview"
@@ -60,7 +52,9 @@
 </template>
 
 <script>
+import editReview from './Review/EditReview'
 export default {
+
     props: ['id'],
     data() {
         return {
@@ -74,7 +68,10 @@ export default {
         isAuthenticated() {
         return this.$store.getters.user !== null && this.$store.getters.user !== undefined
         }
-    },   
+    },
+    components: {
+        editReview
+    },
     methods: {
         goBack() {
             TweenMax.to(this.$refs.showReviewSide, .5, {
@@ -92,21 +89,23 @@ export default {
             }, 400)
         },
         deleteReview() {
+            if (confirm("Biztos törlöd?")) {
             this.$store.dispatch('deleteReview', {id: this.id, imgExt: this.review.imgExt})
             this.$router.push('/')
+            }
         }
     },
-    mounted() {
-        if (window.innerWidth > 700)  {
-        TweenMax.from(this.$refs.showReviewSide, .5, {
-            ease: Power1.easeOut,
-            x: 1500,
-            y: 0,
-            z: 0,
-            rotationX: 0,
-            rotationY: 0,
-            rotationZ: 45,
-            autoAlpha: 0,            
+    mounted() {        
+        if (window.innerWidth > 700)  {           
+            TweenMax.from(this.$refs.showReviewSide, .5, {
+                ease: Power1.easeOut,
+                x: 1500,
+                y: 0,
+                z: 0,
+                rotationX: 0,
+                rotationY: 0,
+                rotationZ: 45,
+                autoAlpha: 0    
             })
         } else {
             TweenMax.from(this.$refs.showReviewSide, 1, {
@@ -184,7 +183,8 @@ export default {
 }
 .showReviewImage img{
    max-height: 200px;
-   margin-top: 10px;    
+   margin-top: 10px;
+   max-width: 100px;    
 }
 }
 </style>

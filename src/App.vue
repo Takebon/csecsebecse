@@ -27,7 +27,7 @@
         >
         <v-icon>add</v-icon>        
       </v-btn>
-
+   
     <v-content>
       <v-container fluid>        
         <router-view></router-view>       
@@ -45,7 +45,8 @@ export default {
   name: 'App',
   data () {
     return {      
-      mouseOver: false         
+      mouseOver: false,
+      
     }
   },
   methods: {
@@ -59,7 +60,10 @@ export default {
     },
     user() {
       return this.$store.getters.user
-    }
+    },
+    // loading() {
+    //   this.$store.getters.loading
+    // }
   }
 }
 </script>
