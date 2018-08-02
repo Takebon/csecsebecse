@@ -1,76 +1,87 @@
 <template>
     <v-container>
+        <v-btn
+            to= "/"   
+            type="submit"
+            color="yellow darken-3"
+            dark
+            fixed
+            right
+            fab                                                                     
+            >
+            <v-icon>keyboard_return</v-icon>        
+        </v-btn>
         <v-layout row >
             <v-flex xs12 sm6 offset-sm3 lg4 offset-lg4 id="addPageBackground" class="pa-5">
-            <v-layout row >
-                <v-flex xs12>
-                    <h2>Új ajánló</h2>
-                </v-flex>
-            </v-layout>
-            <v-layout row >
-                <v-flex xs12 >
-                    <form @submit.prevent="onCreateReview" >
-                        <v-layout row>
-                            <v-flex xs12>
-                                <v-text-field
-                                :rules="reqRules"                            
-                                name="author"
-                                label="Szerző"
-                                v-model="author"
-                                id="author"
-                                required></v-text-field>
-                            </v-flex>
-                        </v-layout>
-
-                        <v-layout row>
-                            <v-flex xs12>
-                                <v-text-field
-                                :rules="reqRules"                            
-                                name="title"
-                                label="Könyv címe"
-                                v-model="title"
-                                id="title"
-                                required></v-text-field>
-                            </v-flex>
-                        </v-layout>
-
-                        <v-layout row>
-                            <v-flex xs12>
-                                <v-btn raised class="primary" @click="onPickFile">Upload Image</v-btn>
-                                <input type="file" 
-                                    style="display: none" 
-                                    ref="fileInput" 
-                                    accept="image/*"
-                                    @change="onFilePicked"
-                                    >
-                            </v-flex>
-                        </v-layout>
-                        <v-layout row>
-                            <v-flex xs12>
-                                <img :src="imageURL" height="150">
-                            </v-flex>
-                        </v-layout>
-
-                        <v-layout row>
-                            <v-flex xs12>
-                                <v-textarea                            
-                                :rules="reqRules"                            
-                                name="review"
-                                label="Ajánló"
-                                v-model="review"
-                                id="review"                                
-                                required></v-textarea>
-                            </v-flex>
-                        </v-layout>
-                        <v-layout row>
-                            <v-flex xs12>
-                                <v-btn class="primary" type="submit" :disabled="!formIsValid">Ajánló mentése</v-btn>
-                            </v-flex>                        
-                        </v-layout>
-                    </form>
-                </v-flex>
-            </v-layout>
+                <v-layout row >
+                    <v-flex xs12>
+                        <h2>Új ajánló</h2>
                     </v-flex>
+                </v-layout>
+                <v-layout row >
+                    <v-flex xs12 >
+                        <form @submit.prevent="onCreateReview" >
+                            <v-layout row>
+                                <v-flex xs12>
+                                    <v-text-field
+                                    :rules="reqRules"                            
+                                    name="author"
+                                    label="Szerző"
+                                    v-model="author"
+                                    id="author"
+                                    required></v-text-field>
+                                </v-flex>
+                            </v-layout>
+
+                            <v-layout row>
+                                <v-flex xs12>
+                                    <v-text-field
+                                    :rules="reqRules"                            
+                                    name="title"
+                                    label="Könyv címe"
+                                    v-model="title"
+                                    id="title"
+                                    required></v-text-field>
+                                </v-flex>
+                            </v-layout>
+
+                            <v-layout row>
+                                <v-flex xs12>
+                                    <v-btn raised class="primary" @click="onPickFile">Upload Image</v-btn>
+                                    <input type="file" 
+                                        style="display: none" 
+                                        ref="fileInput" 
+                                        accept="image/*"
+                                        @change="onFilePicked"
+                                        >
+                                </v-flex>
+                            </v-layout>
+                            <v-layout row>
+                                <v-flex xs12>
+                                    <img :src="imageURL" height="150">
+                                </v-flex>
+                            </v-layout>
+
+                            <v-layout row>
+                                <v-flex xs12>
+                                    <v-textarea                            
+                                    :rules="reqRules"                            
+                                    name="review"
+                                    label="Ajánló"
+                                    v-model="review"
+                                    id="review"                                
+                                    required></v-textarea>
+                                </v-flex>
+                            </v-layout>
+                            <v-layout row>
+                                <v-flex xs12>
+                                    <v-btn class="primary" type="submit" :disabled="!formIsValid">Ajánló mentése</v-btn>
+                                </v-flex>                        
+                            </v-layout>
+                        </form>
+                    </v-flex>
+                </v-layout>
+            </v-flex>
         </v-layout>
     </v-container>
 </template>

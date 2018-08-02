@@ -7,8 +7,7 @@
         <router-link to="/" tag="span" style="cursor: pointer" class="headbarText">
           Csecsebecse Könyves Blog
         </router-link>
-      </v-toolbar-title>     
-             
+      </v-toolbar-title>             
     </v-toolbar>
 
     <v-btn
@@ -45,8 +44,7 @@ export default {
   name: 'App',
   data () {
     return {      
-      mouseOver: false,
-      
+      mouseOver: false      
     }
   },
   methods: {
@@ -60,10 +58,7 @@ export default {
     },
     user() {
       return this.$store.getters.user
-    },
-    // loading() {
-    //   this.$store.getters.loading
-    // }
+    }   
   }
 }
 </script>
@@ -73,6 +68,7 @@ export default {
   *::after,
   *::before {
     box-sizing: border-box;
+    font-family: 'Pangolin', cursive; 
   }
   #app {
     background-color: rgb(100, 100, 100);

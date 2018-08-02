@@ -1,7 +1,7 @@
 <template>
   <v-layout>
-    <v-btn        
-        to="/about"
+    <v-btn
+        @click="goAway()"        
         color="green darken-3"
         dark        
         fixed
@@ -20,7 +20,7 @@
                     :key="index"
                     :review='review'
                     ref="grid_element"
-                    @showSingleComponent="showSingleItem($event)"/>     
+                    @showSingleComponent="goAway($event)"/>     
     </v-container>
   </v-layout>
 </template>
@@ -34,7 +34,7 @@ export default {
     }
   },
   methods: {
-    showSingleItem(id) {
+    goAway(id) {
       for (let key in this.$refs.grid_element) {
         for (let element in this.$refs.grid_element[key].$refs) {
           let bounds = this.$refs.grid_element[key].$refs[element].getBoundingClientRect()
@@ -51,7 +51,12 @@ export default {
         }
       }
       setTimeout(() => {
-        this.$router.push(`/review/${ id }`)
+        if (id) {
+          this.$router.push(`/review/${ id }`)
+        } else {
+          this.$router.push(`/about`)
+        }
+        
       }, 400)        
     }    
   },

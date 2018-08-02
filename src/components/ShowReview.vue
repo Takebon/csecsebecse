@@ -76,11 +76,7 @@ export default {
         goBack() {
             TweenMax.to(this.$refs.showReviewSide, .5, {
                 ease: Power1.easeOut,
-                x: 1000,
-                y: 0,
-                z: 0,
-                rotationX: 0,
-                rotationY: 0,
+                x: 1000,               
                 rotationZ: 180,
                 autoAlpha: 0
             })            
@@ -99,11 +95,7 @@ export default {
         if (window.innerWidth > 700)  {           
             TweenMax.from(this.$refs.showReviewSide, .5, {
                 ease: Power1.easeOut,
-                x: 1500,
-                y: 0,
-                z: 0,
-                rotationX: 0,
-                rotationY: 0,
+                x: 1500,                
                 rotationZ: 45,
                 autoAlpha: 0    
             })
@@ -119,7 +111,6 @@ export default {
 
 <style>
 .showReviewSide {
-    font-family: 'Pangolin', cursive;  
     position: absolute;
     left: 10px;
     right: 10px;
@@ -127,13 +118,12 @@ export default {
     bottom: 0px;    
     display: flex;
     justify-content: center;
-    align-items: center;
-    
+    align-items: center;    
 }
 .reviewBg{
     background: url(../assets/texture.png) no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size: cover;    
 }
 .showReviewContainer {
     padding: 10px;

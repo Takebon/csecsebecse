@@ -11,8 +11,10 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
     state: {
         loadedReviews: [],
+        messages: [],
         user: null,
-        loading: false
+        loading: false,
+        errorMsg: null
         },
         //-------------------------------------------------------------
      getters: {
@@ -22,7 +24,7 @@ export const store = new Vuex.Store({
             }) 
         },
         featuredReviews(state, getters) {
-            return getters.loadedReviews.slice(0, 15)
+            return getters.loadedReviews.slice(0, 50)
         },
         loadedReview(state) {
             return (reviewId) => {                
@@ -31,11 +33,19 @@ export const store = new Vuex.Store({
                 })
             }
         },
+        loadMessages(state) {
+            return state.messages.sort((messageA, messageB) => {
+                return messageA.date < messageB.date
+            })
+        },
         user(state) {
             return state.user
         },
         loading(state) {
             return state.loading
+        },
+        errorMsg(state) {
+            return state.errorMsg
         }
     },
     //-----------------------------------------------------------------
@@ -70,6 +80,23 @@ export const store = new Vuex.Store({
             if (payload.review) {
                 review.review = payload.review
             }
+        },
+        createMessage(state, payload) {
+            state.messages.push(payload)
+        },
+        setLoadedMessages(state, payload) {
+            state.messages = payload
+        },
+        deleteMessage(state, payload) {
+            state.messages = state.messages.filter(message => {
+                return message.id != payload
+            })
+        },
+        setErrorMsg(state, payload) {
+            state.errorMsg = payload
+        },
+        clearErrorMsg(state) {
+            state.errorMsg = null
         }
     },
     //-----------------------------------------------------------------
@@ -179,6 +206,7 @@ export const store = new Vuex.Store({
         },
         signIn({commit}, payload) {
             commit('setLoading', true)
+            commit('clearErrorMsg')
             firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
                 .then(
                     cred => {
@@ -192,6 +220,7 @@ export const store = new Vuex.Store({
                 )
                 .catch(err => {
                     commit('setLoading', false)
+                    commit('setErrorMsg', err.message)
                     console.log(err)
                 })
         },
@@ -203,6 +232,57 @@ export const store = new Vuex.Store({
                 id: payload.uid,
                 email: payload.email
             })
+        },
+        createMessage({commit}, payload) {
+            commit('setLoading', true)
+            const message = {
+                name: payload.name,
+                email: payload.email,
+                message: payload.message,
+                date: payload.date
+            }
+            db.collection('messages').add(message)
+                .then(req => {
+                    commit('setLoading', false)
+                    commit('createMessage', {
+                        ...message,
+                        id: req.id
+                    })
+                })
+                .catch(err => {
+                    commit('setLoading', false)
+                    console.log(err)
+                })
+        },
+        loadMessages({commit}) {
+            commit('setLoading', true)
+            db.collection('messages').get()
+             .then(snapshot => {
+                 let messages = []
+                 snapshot.forEach(doc => {
+                     let message = {
+                         name: doc.data().name,
+                         email: doc.data().email,
+                         message: doc.data().message,
+                         date: doc.data().date,
+                         id: doc.id                         
+                     }
+                    messages.push(message)                    
+                })
+                commit('setLoadedMessages', messages)
+                commit('setLoading', false)
+             }).catch(err => {
+                commit('setLoading', false)
+                console.log(err)
+            })
+        },
+        deleteMessage({commit}, payload) {
+            db.collection('messages').doc(payload).delete()
+                .then(() => {
+                    commit('deleteMessage', payload)
+                }).catch(err => {                    
+                    console.log(err)
+                })
         }
     }
 })

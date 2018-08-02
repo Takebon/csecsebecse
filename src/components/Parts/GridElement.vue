@@ -28,6 +28,11 @@ export default {
             mouseState: true
         }
     },
+    computed: {
+        loading() {
+            return this.$store.getters.loading
+        }
+    },
     methods: {
         showItem() {
             this.runing = false
@@ -108,8 +113,7 @@ export default {
                 filer .5s,
                 box-shadow .3s;
     position: relative; 
-    filter: grayscale(1);
-    
+    filter: grayscale(1);    
 }
 .grid_item:hover{
     background: rgba(153, 235, 255, 0.6);
@@ -148,11 +152,9 @@ export default {
 .grid_text {   
     text-align: center;
     top: 15%;
-    max-width: 60%;
-    font-family: 'Pangolin', cursive;    
+    max-width: 60%;    
 }
-.grid_title {
-    font-family: 'Pangolin', cursive;
+.grid_title {  
     font-size: 1.8em;
     line-height: 1em;
     margin-bottom: 5px;

@@ -10,13 +10,29 @@
             fab                                                                     
             >
             <v-icon>keyboard_return</v-icon>        
-        </v-btn>
+        </v-btn>        
         <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
                 <v-card id="signInCard">
                     <v-card-text>
                         <v-container>
-                            <h2 class="display-1 indigo--text" v-if="isAuthenticated">Belépve</h2>
+                            <div v-if="errorMsg" class="errorMsg">{{ errorMsg }}</div>
+                            <div v-if="isAuthenticated">                                     
+                            <h1 class="subheading indigo--text">Üzenetek:</h1>
+                            <v-divider></v-divider>
+                            <div v-for="(message, index) in messages" :key="index">
+                                <div class="message_box">
+                                    <div class="message_text">
+                                        <h2 class="subheading">{{message.name}} ({{ message.email }})</h2>
+                                        <p class="caption">{{ message.message }}</p>
+                                    </div>
+                                    <div class="message_icon">                                        
+                                        <v-icon style="cursor: pointer" @click="deleteMessage(message.id)">delete</v-icon>
+                                    </div>
+                                </div>                       
+                                <v-divider></v-divider>
+                            </div>
+                            </div> 
                             <form @submit.prevent="onSignIn" v-if="!isAuthenticated">
                                 <v-layout row>                                    
                                     <v-flex xs12>
@@ -52,18 +68,21 @@
                                     <v-icon>how_to_reg</v-icon>        
                                 </v-btn>
                             </form>
+                                <v-tooltip right> 
                                 <v-btn
                                     @click="onSignOut"     
                                     v-if="isAuthenticated"
                                     color="red darken-3"
                                     dark
-                                    absolute     
-                                    bottom
+                                    slot="activator"
+                                    top
                                     right
                                     fab                                                                     
                                     >
                                     <v-icon>remove_circle_outline</v-icon>        
                                 </v-btn>
+                                <span>Kilépés</span>
+                        </v-tooltip> 
                         </v-container>
                     </v-card-text>
                 </v-card>
@@ -86,11 +105,20 @@ export default {
         },
         onSignOut() {
             this.$store.dispatch('signOut')
+        },
+        deleteMessage(id) {
+            this.$store.dispatch('deleteMessage', id)            
         }
     },
     computed: {
         isAuthenticated() {
             return this.$store.getters.user !== null && this.$store.getters.user !== undefined
+        },
+        messages() {
+            return this.$store.getters.loadMessages
+        },
+        errorMsg() {
+            return this.$store.getters.errorMsg
         }
     }
 }
@@ -100,6 +128,14 @@ export default {
 #signInCard {
     border-radius: 10px;
     box-shadow: 5px 5px 15px black;
+}
+.message_box {
+    display: grid;
+    grid-template-columns: auto 20px;
+    margin: 0 10px;
+}
+.errorMsg {
+    background: lightcoral;
 }
 
 </style>

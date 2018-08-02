@@ -31,14 +31,14 @@ let router = new Router({
         requiresAuth: true
       }
     },
-    {
-      path: '/edit/:id',
-      name: 'EditReview',
-      component: EditReview,
-      meta: {
-        requiresAuth: true
-      }
-    },
+    // {
+    //   path: '/edit/:id',
+    //   name: 'EditReview',
+    //   component: EditReview,
+    //   meta: {
+    //     requiresAuth: true
+    //   }
+    // },
     {
       path: '/review/:id',
       name: 'ShowReview',

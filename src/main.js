@@ -32,6 +32,7 @@ new Vue({
       }
     })
     this.$store.dispatch('loadReviews')
+    this.$store.dispatch('loadMessages')
   }
 })
 

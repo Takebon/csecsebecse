@@ -8,7 +8,7 @@
             fab>                
             <v-icon>edit</v-icon>
             </v-btn>
-            <v-card>
+            <v-card  color="yellow lighten-5">
                 <v-container>
                     <v-layout row wrap>
                         <v-flex xs12>
@@ -101,5 +101,7 @@ export default {
 </script>
 
 <style>
-
+.edit_card {
+    background: #000 !important;
+}
 </style>
