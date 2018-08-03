@@ -49,7 +49,8 @@
                                 v-model="editedReview"                         
                                 name="review"
                                 label="Ajánló"                                
-                                id="review"                                
+                                id="review"
+                                rows="10"                     
                                 required></v-textarea>
                             </v-card-text>
                         </v-flex>
@@ -101,7 +102,5 @@ export default {
 </script>
 
 <style>
-.edit_card {
-    background: #000 !important;
-}
+
 </style>

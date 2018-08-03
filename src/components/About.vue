@@ -172,6 +172,7 @@ export default {
     align-items: center;
     flex-direction: column;
     background-color: rgb(49, 7, 7);
+    padding: 30px 0;
     
 }
 .hero img {

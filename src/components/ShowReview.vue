@@ -178,5 +178,8 @@ export default {
    margin-top: 10px;
    max-width: 100px;    
 }
+.showReviewText {    
+    padding-bottom: 25px;    
+}
 }
 </style>
