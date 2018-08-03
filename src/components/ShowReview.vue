@@ -114,16 +114,17 @@ export default {
     position: absolute;
     left: 10px;
     right: 10px;
-    top:0px;
-    bottom: 0px;    
+    top:10%;       
     display: flex;
     justify-content: center;
-    align-items: center;    
+    align-items: top;    
 }
 .reviewBg{
     background: url(../assets/texture.png) no-repeat;
     background-position: center;
-    background-size: cover;    
+    background-size: cover;
+    padding-top: 20px; 
+    padding-right: 20px; 
 }
 .showReviewContainer {
     padding: 10px;
@@ -167,7 +168,8 @@ export default {
 @media screen and (max-width: 600px) {
 .showReviewContainer {
     grid-template-areas: 
-     "image title title"
+     "image image image"
+     "title title title"
      "text text text";
    
 }

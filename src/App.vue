@@ -70,9 +70,7 @@ export default {
     box-sizing: border-box;
     font-family: 'Pangolin', cursive; 
   }
-  #app {
-    background-color: rgb(100, 100, 100);
-  }
+  
 
   .headbarText {
   font-family: 'Gaegu', cursive !important;
@@ -85,8 +83,18 @@ export default {
       background: url(./assets/bg.jpg) no-repeat;
       background-position: center;
       background-size: cover;   
-      opacity: 0.8;
-  } 
+      
+  }
+  .background::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000;
+    opacity: .2;
+  }
 
 </style>
 

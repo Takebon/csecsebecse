@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-btn
-            to= "/"   
+            @click="backToBabilon"   
             type="submit"
             color="yellow darken-3"
             dark
@@ -12,7 +12,7 @@
             <v-icon>keyboard_return</v-icon>        
         </v-btn>    
     <div class="about_container">
-        <div class="portfolio">
+        <div class="portfolio" ref="portfolio">
             <section class="hero">
                 <img src="../assets/profil.jpg" alt="">
                 <div class="hero_content">
@@ -21,7 +21,7 @@
                 </div>
             </section>
         </div>
-        <div class="message">
+        <div class="message" ref="message">
             <section class="message_container">
                         <v-layout row >
                             <v-flex xs12 sm6 offset-sm3 lg4 offset-lg4 id="messageBackground" class="pa-5 mt-5">
@@ -105,11 +105,42 @@ export default {
                 email: this.email,
                 message: this.message,
                 date: Date.now()
-            })
+            })            
+            TweenMax.to(this.$refs.message, .5, {x: 1000 , 
+                                                 y: -1000, 
+                                                 scale: 0, 
+                                                 repeat: 1, 
+                                                 yoyo: true, 
+                                                 rotation: 100, 
+                                                 autoAlpha: 0})
             this.name = ''
             this.email = ''
             this.message = ''         
+        },
+        backToBabilon() {
+            if (window.innerWidth < 800) {
+
+            }
+            const tl = new TimelineLite()
+                tl.to(this.$refs.portfolio, .5, {ease: Power1.easeOut, x: -1000, autoAlpha: 0})
+                if (window.innerWidth < 800) {
+                    tl.to(this.$refs.message, .5, {ease: Power1.easeOut, x: -1000, autoAlpha: 0}, '-=.2')
+                } else {
+                     tl.to(this.$refs.message, .5, {ease: Power1.easeOut, y: -1000, autoAlpha: 0}, '-=.2')
+                }
+            setTimeout(() => {
+                this.$router.push('/')
+            }, 500)
         }
+    },
+    mounted() {
+        const tl = new TimelineLite()
+            tl.from(this.$refs.portfolio, .5, {ease: Power1.easeOut, x: -1000, autoAlpha: 0})
+            if(window.innerWidth < 800) {
+                tl.from(this.$refs.message, .5, {ease: Power1.easeOut, x: -1000, autoAlpha: 0}, '-=.2')
+            } else {
+                tl.from(this.$refs.message, .5, {ease: Power1.easeOut, y: -1000, autoAlpha: 0}, '-=.2')
+            }
     }
 }
 </script>
