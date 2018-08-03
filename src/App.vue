@@ -33,7 +33,13 @@
       </v-container>
     </v-content>
 
-    <v-footer app color="orange darken-4" dark></v-footer>
+    <v-footer app class="pt-3 pr-5" color="orange darken-4" dark>
+      <v-spacer></v-spacer>
+      <p style="color: orange">TakebonCog &copy; 2018</p>
+      </v-footer>
+
+
+
   </v-app>
 </template>
 
