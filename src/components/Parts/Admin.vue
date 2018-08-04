@@ -33,9 +33,10 @@
                                 <v-divider></v-divider>
                             </div>
                             </div> 
-                            <form @submit.prevent="onSignIn" v-if="!isAuthenticated">
+                            <v-form @submit.prevent="onSignIn" v-if="!isAuthenticated">
                                 <v-layout row>                                    
                                     <v-flex xs12>
+                                        <h3>Administrator only!</h3>
                                         <v-text-field
                                         name="email"
                                         label="Mail"                                   
@@ -67,7 +68,7 @@
                                     >
                                     <v-icon>how_to_reg</v-icon>        
                                 </v-btn>
-                            </form>
+                            </v-form>
                                 <v-tooltip right> 
                                 <v-btn
                                     @click="onSignOut"     

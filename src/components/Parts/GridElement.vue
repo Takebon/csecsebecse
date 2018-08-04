@@ -116,7 +116,7 @@ export default {
     filter: grayscale(1);    
 }
 .grid_item:hover{
-    background: rgba(153, 235, 255, 0.6);
+    background: rgba(153, 235, 255, 0.7);
     filter: grayscale(0);
     box-shadow: 2px 2px 15px;
 }
@@ -124,10 +124,10 @@ export default {
     box-shadow: 5px 5px 10px;
 }
 .grid_item:nth-child(even) {
-    background: rgba(65, 255, 65, 0.3);
+    background: rgba(136, 253, 136, 0.3);
 }
 .grid_item:nth-child(even):hover {
-    background: rgba(65, 255, 65, 0.6)
+    background: rgba(136, 253, 136, 0.7)
 }
 .grid_bg img {
     position: absolute;
@@ -168,6 +168,10 @@ export default {
 @media screen and (max-width: 600px) {
     .grid_item {
         filter: grayscale(0);
+        background: rgba(153, 235, 255, 0.7);
     }
+    .grid_item:nth-child(even) {
+    background: rgba(136, 253, 136, 0.7);
+}
 }
 </style>

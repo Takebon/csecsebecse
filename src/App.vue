@@ -2,7 +2,7 @@
   <v-app id="app">
     <div class="background"></div>
 
-    <v-toolbar app color="orange darken-4" dark @click.ctrl="goToAdmin">
+    <v-toolbar app color="orange darken-4" dark>
       <v-toolbar-title   class="headline">
         <router-link to="/" tag="span" style="cursor: pointer" class="headbarText">
           Csecsebecse Könyves Blog
@@ -33,7 +33,11 @@
       </v-container>
     </v-content>
 
-    <v-footer app class="pt-3 pr-5" color="orange darken-4" dark>
+    <v-footer app class="pt-3 pr-5" color="orange darken-4">
+      <router-link to="/admin" style="text-decoration: none" >
+      <v-icon style="margin-bottom: 15px" color="orange darken-1">build</v-icon>
+      </router-link>
+      
       <v-spacer></v-spacer>
       <p style="color: orange">TakebonCog &copy; 2018</p>
       </v-footer>
@@ -56,6 +60,9 @@ export default {
   methods: {
     goToAdmin() {
       this.$router.push('/admin')
+    },
+    resized() {
+      console.log('helleo')
     }
   },
   computed: {
@@ -64,8 +71,8 @@ export default {
     },
     user() {
       return this.$store.getters.user
-    }   
-  }
+    }    
+  }  
 }
 </script>
 

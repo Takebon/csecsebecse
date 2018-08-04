@@ -181,5 +181,8 @@ export default {
 .showReviewText {    
     padding-bottom: 25px;    
 }
+.showReviewSide{
+    top: 0;
+}
 }
 </style>
