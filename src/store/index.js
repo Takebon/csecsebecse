@@ -19,9 +19,7 @@ export const store = new Vuex.Store({
         //-------------------------------------------------------------
      getters: {
         loadedReviews(state) {
-            return state.loadedReviews.sort((reviewA, reviewB) => {
-                return reviewA.date < reviewB.date
-            }) 
+            return state.loadedReviews.sort((a, b) => (a.date > b.date ? -1 : 1)) 
         },
         featuredReviews(state, getters) {
             return getters.loadedReviews.slice(0, 50)
