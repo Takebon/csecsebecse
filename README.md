@@ -1,6 +1,6 @@
 # csecsebecseblog
 
-> A Vue.js project / Live preview: https://csecsebecse.bid
+> A Vue.js project with gsap / Live preview: https://csecsebecse.bid
 
 ## Build Setup
 
