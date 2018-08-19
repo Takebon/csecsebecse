@@ -165,7 +165,7 @@ export default {
     transition: box-shadow .3s;
     max-width: 200px;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
     .grid_item {
         filter: grayscale(0);
         background: rgba(153, 235, 255, 0.7);
