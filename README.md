@@ -1,6 +1,6 @@
 # csecsebecseblog
 
-> A Vue.js project with Vuetify and gsap / Live preview: https://csecsebecse.bid
+> A Vue.js project with Vuetify and gsap / Live preview: https://www.csecsebecsekonyvek.hu/
 
 ## Build Setup
 
